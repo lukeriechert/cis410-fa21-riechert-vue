@@ -11,21 +11,21 @@
           <router-link class="nav-link active" aria-current="page" to="/players">Players</router-link>
         </li>
 
-        <li class="nav-item">
+        <li v-if="auth" class="nav-item">
           <router-link class="nav-link active" aria-current="page" to="/account">My Account</router-link>
         </li>
 
-        <li class="nav-item">
+        <li v-if="!auth" class="nav-item">
           <router-link class="nav-link active" aria-current="page" to="/login"><button class="btn btn-warning">Login</button></router-link>
         </li>
 
-        <li class="nav-item">
+        <li v-if="!auth" class="nav-item">
           <router-link class="nav-link active" aria-current="page" to="/signup"><button class="btn btn-outline-warning text-dark">Sign Up</button></router-link>
         </li>
 
-        <li class="nav-item">
+        <li v-if="auth" class="nav-item">
           <!-- <router-link class="nav-link active" aria-current="page"><button class="btn btn-warning">Logout</button></router-link> -->
-          <button class="btn btn-warning">Logout</button>
+          <button class="btn btn-warning" @click="onLogout">Logout</button>
         </li>
         
       </ul>
@@ -33,6 +33,21 @@
   </div>
 </nav>
 </template>
+
+<script>
+export default{
+  computed: {
+    auth(){
+      return this.$store.state.token;
+    },
+  },
+  methods: {
+    onLogout(){
+      this.$store.dispatch("logout");
+    }
+  }
+}
+</script>
 
 <style scoped>
 .navbar-nav{
