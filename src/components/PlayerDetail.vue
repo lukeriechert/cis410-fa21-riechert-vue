@@ -14,6 +14,11 @@
       <router-link v-if="auth" :to="`/players/${this.$route.params.pk}/report`"><button class="btn btn-success">Add a Report</button></router-link>
 
       <router-link v-else :to="`/login`"><button class="btn btn-outline-success">Sign In to Add a Report</button></router-link>
+
+      <br/>
+      <br/>
+
+      <router-view />
   </div>
 </template>
 
